@@ -1,31 +1,25 @@
-{% set version = "1.0.0" %}
+{% set version = "1.7.4" %}
 
 package:
   name: nanoget
   version: {{ version }}
 
 source:
-  fn: nanoget-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/n/nanoget/nanoget-{{ version }}.tar.gz
-  sha256: 4706e236ab2d9bd0e3759d63340e2aa638518520f67d96250420ac58eb30da6d
+  sha256: 08f27ccf86006fc2c7345f5f41c098c1bf8992364d78abc118b5ce92696d6e65
 
 build:
   number: 0
   skip: True  # [py27]
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
-    - pandas
-    - numpy
-    - biopython
-    - pysam >0.10.0.0
-    - nanomath
 
   run:
     - python
-    - pandas
+    - pandas >=0.22.0
     - numpy
     - biopython
     - pysam >0.10.0.0

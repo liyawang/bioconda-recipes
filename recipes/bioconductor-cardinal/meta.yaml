@@ -1,17 +1,13 @@
-{% set version="1.8.0" %}
-{% set name="Cardinal" %}
-{% set bioc="3.5" %}
+{% set version = "1.12.1" %}
+{% set name = "Cardinal" %}
+{% set bioc = "3.7" %}
 
 package:
-  name: 'bioconductor-{{ name|lower}}'
+  name: 'bioconductor-{{ name|lower }}'
   version: '{{ version }}'
 source:
-  fn: '{{ name }}_{{ version }}.tar.gz'
-  url:
-    - 'http://bioconductor.org/packages/{{ bioc }}/bioc/src/contrib/{{ name }}_{{ version }}.tar.gz'
-    - 'https://bioarchive.galaxyproject.org/{{ name }}_{{ version }}.tar.gz'
-    - 'https://depot.galaxyproject.org/software/{{ name }}/{{ name }}_{{ version }}_src_all.tar.gz'
-  sha256: 2b30a57caa436d93477ecc407e26f11c7061ec6d44482c8f0d0088d5d021e0dd
+  url: 'http://bioconductor.org/packages/{{ bioc }}/bioc/src/contrib/{{ name }}_{{ version }}.tar.gz'
+  sha256: d72bb63d15040fcc46b97022a45a92bb3c1ecb2cafc1b9806f746e1e8d12a1f7
 build:
   number: 0
   rpaths:
@@ -19,9 +15,11 @@ build:
     - lib/
 requirements:
   build:
+    - {{ compiler('cxx') }}
+  host:
     - bioconductor-biobase
     - bioconductor-biocgenerics
-    - bioconductor-matter
+    - bioconductor-matter  >=1.6
     - bioconductor-protgenerics
     - r-base
     - r-irlba
@@ -31,7 +29,7 @@ requirements:
   run:
     - bioconductor-biobase
     - bioconductor-biocgenerics
-    - bioconductor-matter
+    - bioconductor-matter  >=1.6
     - bioconductor-protgenerics
     - r-base
     - r-irlba
@@ -45,3 +43,11 @@ about:
   home: 'http://bioconductor.org/packages/{{ bioc }}/bioc/html/{{ name }}.html'
   license: Artistic-2.0
   summary: 'Implements statistical & computational tools for analyzing mass spectrometry imaging datasets, including methods for efficient pre-processing, spatial segmentation, and classification.'
+
+extra:
+  identifiers:
+    - biotools:cardinal
+  skip-lints:
+    - bioconductor_37
+
+

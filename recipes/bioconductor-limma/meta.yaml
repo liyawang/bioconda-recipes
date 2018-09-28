@@ -1,28 +1,28 @@
-{% set version="3.32.10" %}
-{% set name="limma" %}
-{% set bioc="3.5" %}
+{% set version = "3.34.9" %}
+{% set name = "limma" %}
+{% set bioc = "3.6" %}
 
 package:
-  name: 'bioconductor-{{ name|lower}}'
+  name: 'bioconductor-{{ name|lower }}'
   version: '{{ version }}'
 source:
-  fn: '{{ name }}_{{ version }}.tar.gz'
   url:
     - 'http://bioconductor.org/packages/{{ bioc }}/bioc/src/contrib/{{ name }}_{{ version }}.tar.gz'
-    - 'https://depot.galaxyproject.org/software/{{ name }}/{{ name }}_{{ version }}_src_all.tar.gz'
-  sha256: 91167a72bc4b6894631d1169ca9015cc53b9bcc5607943a1d0e6553067da5fa9
+    - 'https://bioarchive.galaxyproject.org/{{ name }}_{{ version }}.tar.gz'
+    - 'https://depot.galaxyproject.org/software/bioconductor-{{ name }}/bioconductor-{{ name }}_{{ version }}_src_all.tar.gz'
+  sha256: ac4d09c4532c6c0f5a589f5bc2e65d89f39f20df3d0c3a24b00ec4f282a94ef8
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
 requirements:
   build:
+    - {{ compiler('c') }}
+  host:
     - r-base
   run:
     - r-base
-    - r-statmod
-
 test:
   commands:
     - '$R -e "library(''{{ name }}'')"'
@@ -30,3 +30,7 @@ about:
   home: 'http://bioconductor.org/packages/{{ bioc }}/bioc/html/{{ name }}.html'
   license: 'GPL (>=2)'
   summary: 'Data analysis, linear models and differential expression for microarray data.'
+
+extra:
+  identifiers:
+    - biotools:limma

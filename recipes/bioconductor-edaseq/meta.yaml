@@ -1,24 +1,22 @@
-{% set version="2.10.0" %}
-{% set name="EDASeq" %}
-{% set bioc="3.5" %}
+{% set version = "2.12.0" %}
+{% set name = "EDASeq" %}
+{% set bioc = "3.6" %}
 
 package:
-  name: 'bioconductor-{{ name|lower}}'
+  name: 'bioconductor-{{ name|lower }}'
   version: '{{ version }}'
 source:
-  fn: '{{ name }}_{{ version }}.tar.gz'
   url:
     - 'http://bioconductor.org/packages/{{ bioc }}/bioc/src/contrib/{{ name }}_{{ version }}.tar.gz'
-    - 'https://bioarchive.galaxyproject.org/{{ name }}_{{ version }}.tar.gz'
     - 'https://depot.galaxyproject.org/software/{{ name }}/{{ name }}_{{ version }}_src_all.tar.gz'
-  sha256: 2ad59df98df39155d463d309a3f410bb4f99fc4ec8ad51a54b313688986b4538
+  sha256: 9b5f79f6cdae393b9d6f09a63c052251224f2bce2f61158c10d6efc87e42f51f
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
 requirements:
-  build:
+  host:
     - bioconductor-annotationdbi
     - bioconductor-aroma.light
     - 'bioconductor-biobase >=2.15.1'
@@ -53,3 +51,7 @@ about:
   home: 'http://bioconductor.org/packages/{{ bioc }}/bioc/html/{{ name }}.html'
   license: Artistic-2.0
   summary: 'Numerical and graphical summaries of RNA-Seq read data. Within-lane normalization procedures to adjust for GC-content effect (or other gene-level effects) on read counts: loess robust local regression, global-scaling, and full-quantile normalization (Risso et al., 2011). Between-lane normalization procedures to adjust for distributional differences between lanes (e.g., sequencing depth): global-scaling and full-quantile normalization (Bullard et al., 2010).'
+
+extra:
+  identifiers:
+    - biotools:edaseq

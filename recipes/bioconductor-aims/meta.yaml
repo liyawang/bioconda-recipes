@@ -1,24 +1,22 @@
-{% set version="1.8.0" %}
-{% set name="AIMS" %}
-{% set bioc="3.5" %}
+{% set version = "1.10.0" %}
+{% set name = "AIMS" %}
+{% set bioc = "3.6" %}
 
 package:
-  name: 'bioconductor-{{ name|lower}}'
+  name: 'bioconductor-{{ name|lower }}'
   version: '{{ version }}'
 source:
-  fn: '{{ name }}_{{ version }}.tar.gz'
   url:
     - 'http://bioconductor.org/packages/{{ bioc }}/bioc/src/contrib/{{ name }}_{{ version }}.tar.gz'
-    - 'https://bioarchive.galaxyproject.org/{{ name }}_{{ version }}.tar.gz'
     - 'https://depot.galaxyproject.org/software/{{ name }}/{{ name }}_{{ version }}_src_all.tar.gz'
-  sha256: 609a6cbcac06bea1ad4d2109c44ef14f4243f994da3f1d3363391a79d596ca1f
+  sha256: 627fda89c217307c8c50a9c65f8e922c97ab0364be0c76044fe78454e9c175b0
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
 requirements:
-  build:
+  host:
     - bioconductor-biobase
     - r-base
     - r-e1071
@@ -33,3 +31,7 @@ about:
   home: 'http://bioconductor.org/packages/{{ bioc }}/bioc/html/{{ name }}.html'
   license: Artistic-2.0
   summary: 'This package contains the AIMS implementation. It contains necessary functions to assign the five intrinsic molecular subtypes (Luminal A, Luminal B, Her2-enriched, Basal-like, Normal-like). Assignments could be done on individual samples as well as on dataset of gene expression data.'
+extra:
+  identifiers:
+    - biotools:aims
+    - doi:10.1093/jnci/dju357
